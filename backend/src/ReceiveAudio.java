@@ -56,7 +56,7 @@ public class ReceiveAudio extends HttpServlet {
         System.out.println("receive POST FILE");
         
         response.setContentType("application/json;charset=utf-8");
-        response.setHeader("Access-Control-Allow-Origin", "http://10.1.1.27");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         PrintWriter pw = response.getWriter();
 
@@ -85,26 +85,38 @@ public class ReceiveAudio extends HttpServlet {
         }
         else {
             String ret = PostApi.postToIbm(af.toByteArray());
+            System.out.println(ret);
             JSONObject readRet = new JSONObject(ret);
             JSONArray ja = readRet.getJSONArray("results");
             if(ja.length()==0) {
                 JSONObject njo = new JSONObject();
-                njo.put("next", session.getAttribute("last"));
-                njo.put("result", new JSONArray());
+                njo.put("next", words[idx1].get(idx2));
+                JSONArray out1 = new JSONArray();
+                String last = (String)session.getAttribute("last");
+                if(last!=null)
+                for(int ii=0; ii<last.length(); ii++) {
+                    JSONObject temp = new JSONObject();
+                    temp.put("character", ""+last.charAt(ii));
+                    temp.put("right", true);
+                    out1.put(temp);
+                }
+                njo.put("result", out1);
                 System.out.println(njo);
                 pw.print(njo.toString());
-                System.out.println(session.getAttribute("last"));
+                session.setAttribute("last", words[idx1].get(idx2));
+                System.out.println(words[idx1].get(idx2));
             }
             else {
                 String sb = (String)ja.getJSONObject(0).getJSONArray("alternatives").getJSONObject(0).get("transcript");
                 sb = sb.replaceAll(" ", "");
-                boolean[] sab = LCS.getSameOfB((String)session.getAttribute("last"), sb);
-                System.out.printf("Last: %s, This: %s\n", session.getAttribute("last"), sb);
+                String last = (String)session.getAttribute("last");
+                boolean[] sab = LCS.getSameOfB(sb, last);
+                System.out.printf("Last: %s, This: %s\n", last, sb);
                 JSONObject out = new JSONObject();
                 JSONArray out1 = new JSONArray();
                 for(int ii=0; ii<sab.length; ii++) {
                     JSONObject temp = new JSONObject();
-                    temp.put("character", ""+sb.charAt(ii));
+                    temp.put("character", ""+last.charAt(ii));
                     temp.put("right", sab[ii]);
                     out1.put(temp);
                 }
@@ -124,7 +136,7 @@ public class ReceiveAudio extends HttpServlet {
 
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setHeader("Access-Control-Allow-Origin", "http://10.1.1.27");
+        resp.setHeader("Access-Control-Allow-Origin", "http://localhost");
         resp.setHeader("Access-Control-Allow-Headers", "Difficulty");
         resp.setHeader("Access-Control-Allow-Credentials", "true");
     }
