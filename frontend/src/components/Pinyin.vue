@@ -99,6 +99,7 @@ export default {
     methods: {
         onTextChange(text, runDivide = true) {
             this.text = text;
+            console.log(text);
             if(runDivide)
                 this.pinyin = divide(text);
         },
@@ -124,7 +125,7 @@ export default {
                 this.onTextChange(result.data.next);
                 return;
             }
-            var data = parseResult(result.data.result);
+            var data = parseResult(result.data.result, "45px");
             
             if (data.allCorrect === true) {
                 this.correct++;
@@ -133,7 +134,11 @@ export default {
             }
             this.onTextChange(data.html, false);
             console.log(data.html);
-            setTimeout(this.onTextChange(result.data.next), 3000);
+            const that = this;
+            setTimeout(function() {
+                console.log("timeout execute");
+                that.onTextChange(result.data.next);
+            }, 3000);
         },
         async init() {
             var result = await Vec(this.difficulty, null);

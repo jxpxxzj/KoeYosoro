@@ -10,10 +10,12 @@ function parseResult(result, fontSize = "14px", fontWeight = "regular", joinText
     var allCorrect = true;
     var original = [];
     var htmls = result.map(t => {
-        if (t.isRight === false) 
+        console.log(t);
+        console.log(t.right);
+        if (t.right === false) 
             allCorrect = false;
         original.push(t.character);
-        return `<span style="color: ${t.isRight === true ? correct : wrong}; font-size:${fontSize}; font-weight:${fontWeight}">${t.character}</span>`
+        return `<span style="color: ${t.right === true ? correct : wrong}; font-size:${fontSize}; font-weight:${fontWeight}">${t.character}</span>`
     });
 
     console.log(htmls.join(joinText));
