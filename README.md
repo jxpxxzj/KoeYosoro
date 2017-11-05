@@ -1,6 +1,6 @@
 # KoeYosoro
 
-KoeYosoro是一款基于Andoird平台的教育应用。
+[KoeYosoro](https://www.hackx.org/projects/172)是一款基于 Android 平台的教育应用。
 
 提供了以下的功能进行选择：
 
@@ -13,11 +13,11 @@ KoeYosoro是一款基于Andoird平台的教育应用。
 
 ## 项目技术组成
 
-Android作为应用外侧框架。
+Android 作为应用外侧框架。
 
-前后端通过HTTP进行交互，用户向后端发送语音，后端可以返回语音与原词的匹配情况。
+前后端通过 HTTP 进行交互，用户向后端发送语音，后端可以返回语音与原词的匹配情况。
 
-使用IBM WATSON语音识别接口，配合LCS算法。
+使用 IBM Watson 语音识别接口，配合 LCS 算法。
 
 ## 项目使用指南
 
@@ -31,7 +31,7 @@ Android作为应用外侧框架。
 
 ## SDK
 
-IBM WATSON: 进行语音匹配 
+IBM Watson: 进行语音匹配 
 
 ## 截图
 <img src="https://cdn.hackx.org/o_1bu4nup001khiac519kh1hf0bc88.png" width="320px" />
