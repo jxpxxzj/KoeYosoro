@@ -32,3 +32,8 @@ Android作为应用外侧框架。
 ## SDK
 
 IBM WATSON: 进行语音匹配 
+
+## 截图
+<img src="https://cdn.hackx.org/o_1bu4nup001khiac519kh1hf0bc88.png" width="320px" />
+<img src="https://cdn.hackx.org/o_1bu4nup00nh6l2r1sao1fsa1bcn9.png" width="320px" />
+<img src="https://cdn.hackx.org/o_1bu4u7738loctitopp171kavk7.png" width="320px" />
