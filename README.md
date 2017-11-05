@@ -1,21 +1,34 @@
-# speech
+# KoeYosoro
 
-> A Vue.js project
+KoeYosoro是一款基于Andoird平台的教育应用。
 
-## Build Setup
+提供了以下的功能进行选择：
 
-``` bash
-# install dependencies
-npm install
+- 词汇训练
+- 场景训练
+- 听力训练
+- 随机训练
+- 口语特训
+- 个人中心
 
-# serve with hot reload at localhost:8080
-npm run dev
+## 项目技术组成
 
-# build for production with minification
-npm run build
+Android作为应用外侧框架。
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+前后端通过HTTP进行交互，用户向后端发送语音，后端可以返回语音与原词的匹配情况。
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+使用IBM WATSON语音识别接口，配合LCS算法。
+
+## 项目使用指南
+
+首页，点击六个功能块进行选择功能，就可以进行对应的功能训练
+
+在进入训练执行模块，根据提示进行朗读，并进行录音，当朗读结束，结束录音。
+
+之后会将匹配结果返回，错误的词汇会加入错词集。
+
+个人中心可以查看数据统计
+
+## SDK
+
+IBM WATSON: 进行语音匹配 
