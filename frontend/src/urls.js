@@ -1,6 +1,6 @@
 const urls = {
-    voc: 'http://10.1.1.98:8080/audio-upload',
-    sen: 'http://10.1.1.98:8080/audio-upload'
+    voc: 'audio-upload',
+    sen: 'audio-upload'
 }
 
 module.exports = urls;
