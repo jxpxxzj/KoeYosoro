@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import java.util.Random;
 import org.json.*;
@@ -51,6 +52,14 @@ public class ReceiveAudio extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        FileWriter fw = new FileWriter("xsslog.txt", true);
+        fw.write(new Date().toString()+"\n");
+        fw.flush();
+        fw.close();
+
+
         response.setCharacterEncoding("utf-8");
         session = request.getSession();
         System.out.println("receive POST FILE");
